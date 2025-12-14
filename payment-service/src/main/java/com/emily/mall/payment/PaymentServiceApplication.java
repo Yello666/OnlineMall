@@ -1,0 +1,16 @@
+package com.emily.mall.payment;
+
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+
+@SpringBootApplication(scanBasePackages = {"com.emily.mall.payment", "com.emily.mall.common"})
+@EnableDiscoveryClient
+@MapperScan("com.emily.mall.payment.mapper")
+public class PaymentServiceApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(PaymentServiceApplication.class, args);
+    }
+}

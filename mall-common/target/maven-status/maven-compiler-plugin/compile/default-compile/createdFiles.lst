@@ -1,0 +1,4 @@
+com/emily/mall/common/config/MybatisPlusConfig.class
+com/emily/mall/common/handler/MetaObjectHandlerImpl.class
+com/emily/mall/common/result/Result.class
+com/emily/mall/common/entity/BaseEntity.class
