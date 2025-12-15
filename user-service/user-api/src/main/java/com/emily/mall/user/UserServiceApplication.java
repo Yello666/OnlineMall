@@ -1,5 +1,6 @@
 package com.emily.mall.user;
 
+import com.emily.mall.common.config.DefaultFeignConfig;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,7 +12,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  */
 @SpringBootApplication(scanBasePackages = {"com.emily.mall.user", "com.emily.mall.common"})
 @EnableDiscoveryClient
-@EnableFeignClients
+@EnableFeignClients(defaultConfiguration = DefaultFeignConfig.class)
 @MapperScan("com.emily.mall.user.mapper")
 public class UserServiceApplication {
 
