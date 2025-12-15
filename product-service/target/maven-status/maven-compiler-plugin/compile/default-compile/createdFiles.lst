@@ -1,0 +1,6 @@
+com/emily/mall/product/service/impl/ProductServiceImpl.class
+com/emily/mall/product/mapper/ProductMapper.class
+com/emily/mall/product/entity/Product.class
+com/emily/mall/product/controller/ProductController.class
+com/emily/mall/product/ProductServiceApplication.class
+com/emily/mall/product/service/ProductService.class

@@ -4,18 +4,21 @@ server:
 spring:
   application:
     name: payment-service
+  config:
+    import:
+      - nacos:${spring.application.name}.${spring.cloud.nacos.config.file-extension}?server-addr=${spring.cloud.nacos.config.server-addr}
   cloud:
     nacos:
       discovery:
-        server-addr: localhost:8848
+        server-addr: 192.168.64.2:8848
       config:
-        server-addr: localhost:8848
+        server-addr: 192.168.64.2:8848
         file-extension: yaml
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/mall_payment?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
+    url: jdbc:mysql://192.168.64.2:3306/mall_payment?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
     username: root
-    password: root
+    password: 123456
 
 mybatis-plus:
   configuration:

@@ -1,0 +1,11 @@
+/Users/emily/JavaProjects/OnlineMall/order-service/src/main/java/com/emily/mall/order/service/impl/OrderServiceImpl.java
+/Users/emily/JavaProjects/OnlineMall/order-service/src/main/java/com/emily/mall/order/entity/Order.java
+/Users/emily/JavaProjects/OnlineMall/order-service/src/main/java/com/emily/mall/order/mapper/OrderItemMapper.java
+/Users/emily/JavaProjects/OnlineMall/order-service/src/main/java/com/emily/mall/order/service/OrderService.java
+/Users/emily/JavaProjects/OnlineMall/order-service/src/main/java/com/emily/mall/order/service/impl/OrderItemServiceImpl.java
+/Users/emily/JavaProjects/OnlineMall/order-service/src/main/java/com/emily/mall/order/controller/OrderController.java
+/Users/emily/JavaProjects/OnlineMall/order-service/src/main/java/com/emily/mall/order/service/OrderItemService.java
+/Users/emily/JavaProjects/OnlineMall/order-service/src/main/java/com/emily/mall/order/mapper/OrderMapper.java
+/Users/emily/JavaProjects/OnlineMall/order-service/src/main/java/com/emily/mall/order/controller/OrderItemController.java
+/Users/emily/JavaProjects/OnlineMall/order-service/src/main/java/com/emily/mall/order/entity/OrderItem.java
+/Users/emily/JavaProjects/OnlineMall/order-service/src/main/java/com/emily/mall/order/OrderServiceApplication.java

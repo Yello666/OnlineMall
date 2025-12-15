@@ -1,6 +1,6 @@
-/Users/emily/JavaProjects/OnlineMall/user-service/src/main/java/com/emily/mall/user/UserServiceApplication.java
-/Users/emily/JavaProjects/OnlineMall/user-service/src/main/java/com/emily/mall/user/controller/UserController.java
 /Users/emily/JavaProjects/OnlineMall/user-service/src/main/java/com/emily/mall/user/entity/User.java
 /Users/emily/JavaProjects/OnlineMall/user-service/src/main/java/com/emily/mall/user/mapper/UserMapper.java
 /Users/emily/JavaProjects/OnlineMall/user-service/src/main/java/com/emily/mall/user/service/UserService.java
 /Users/emily/JavaProjects/OnlineMall/user-service/src/main/java/com/emily/mall/user/service/impl/UserServiceImpl.java
+/Users/emily/JavaProjects/OnlineMall/user-service/src/main/java/com/emily/mall/user/UserServiceApplication.java
+/Users/emily/JavaProjects/OnlineMall/user-service/src/main/java/com/emily/mall/user/controller/UserController.java

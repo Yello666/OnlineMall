@@ -1,5 +1,6 @@
 com/emily/mall/user/UserServiceApplication.class
 com/emily/mall/user/service/UserService.class
 com/emily/mall/user/controller/UserController.class
+com/emily/mall/user/service/impl/UserServiceImpl.class
 com/emily/mall/user/entity/User.class
 com/emily/mall/user/mapper/UserMapper.class

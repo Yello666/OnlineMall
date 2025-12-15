@@ -1,0 +1,6 @@
+com/emily/mall/inventory/service/impl/InventoryServiceImpl.class
+com/emily/mall/inventory/mapper/InventoryMapper.class
+com/emily/mall/inventory/service/InventoryService.class
+com/emily/mall/inventory/entity/Inventory.class
+com/emily/mall/inventory/controller/InventoryController.class
+com/emily/mall/inventory/InventoryServiceApplication.class
