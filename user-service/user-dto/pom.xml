@@ -6,19 +6,21 @@
     
     <parent>
         <groupId>com.emily</groupId>
-        <artifactId>online-mall</artifactId>
+        <artifactId>user-service</artifactId>
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>user-service</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>user-dto</artifactId>
+    <packaging>jar</packaging>
     
-    <name>user-service</name>
-    <description>用户服务</description>
+    <name>user-dto</name>
+    <description>用户服务DTO模块</description>
 
-    <modules>
-        <module>user-dto</module>
-        <module>user-api</module>
-        <module>user-biz</module>
-    </modules>
+    <dependencies>
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
 </project>
