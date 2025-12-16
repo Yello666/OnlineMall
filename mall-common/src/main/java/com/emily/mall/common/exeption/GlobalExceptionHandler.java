@@ -1,0 +1,66 @@
+package com.emily.mall.common.exeption;
+
+
+import com.emily.mall.common.result.Result;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.DuplicateKeyException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.NoHandlerFoundException;
+
+
+@Slf4j
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+    @ExceptionHandler
+    public Result<Exception> ExceptionHandler(Exception e){
+        log.error("出错了",e);
+        return Result.fail("出错啦，请联系工作人员～");
+    }
+    @ExceptionHandler
+    public Result<Exception> HttpRequestMethodNotSupportedExceptionHandler(HttpRequestMethodNotSupportedException e){
+        log.error("请求类型出错或者路由出错",e);
+        return Result.fail(400,"请求类型或者路由出错啦");
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public Result<Exception> handleDataIntegrityViolation(DataIntegrityViolationException e) {
+        log.error("数据库完整性约束异常：必填字段值为空，或者字段值类型不匹配,或重复插入{}", e.getMessage());
+        return Result.fail(400, "必填字段值为空");
+    }
+
+    @ExceptionHandler(DuplicateKeyException.class)
+    public Result<Exception> handleDuplicateKeyException(DuplicateKeyException e) {
+        log.error("数据库完整性约束异常：重复插入:{}", e.getMessage());
+        String message=e.getMessage();
+        int i=message.indexOf("Duplicate entry");
+        String errMsg=message.substring(i);
+        String[] str=errMsg.split(" ");
+
+        return Result.fail(400, str[2]+"已存在");
+    }
+
+    @ExceptionHandler(DataAccessException.class)
+    public Result<Exception> handleDataAccess(DataAccessException e) {
+        log.error("数据库访问异常{}", e.getMessage());
+        return Result.fail(500, "数据库访问出错，请检查SQL或数据源配置");
+    }
+
+    @ExceptionHandler(NoHandlerFoundException.class)
+    public Result<Exception> handleNoResourceFoundException(NoHandlerFoundException e) {
+        log.error("资源路径不存在{}", e.getMessage());
+        return Result.fail(404, "资源路径不存在，请检查路由是否正确");
+    }
+//    @ExceptionHandler(AccessDeniedException.class)
+//    public Result<Exception> handleAccessDeniedException(AccessDeniedException e) {
+//        log.error("权限不足:{}", e.getMessage());
+//        return Result.fail(403, e.getMessage());
+//        //401-没有登录，403-登录了但是没有管理员权限
+//    }
+
+
+
+}

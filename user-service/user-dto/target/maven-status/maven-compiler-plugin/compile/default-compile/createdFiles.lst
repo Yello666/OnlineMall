@@ -1,1 +1,4 @@
+com/emily/mall/user/dto/request/RegisterRequest.class
+com/emily/mall/user/dto/response/LoginByUserNameResponse.class
 com/emily/mall/user/dto/package-info.class
+com/emily/mall/user/dto/request/LoginByUserNameRequest.class

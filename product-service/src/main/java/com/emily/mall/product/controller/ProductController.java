@@ -1,9 +1,11 @@
 package com.emily.mall.product.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.emily.mall.common.UserContext.UserContextHolder;
 import com.emily.mall.common.result.Result;
 import com.emily.mall.product.entity.Product;
 import com.emily.mall.product.service.ProductService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,10 +14,11 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/product")
+@RequiredArgsConstructor
 public class ProductController {
 
-    @Autowired
-    private ProductService productService;
+
+    private final ProductService productService;
 
     /**
      * 分页查询商品列表
@@ -45,6 +48,7 @@ public class ProductController {
      */
     @GetMapping("/code/{code}")
     public Result<Product> getByCode(@PathVariable String code) {
+
         Product product = productService.getProductByCode(code);
         return Result.ok(product);
     }
@@ -54,6 +58,9 @@ public class ProductController {
      */
     @PostMapping
     public Result<Boolean> save(@RequestBody Product product) {
+        String userRole= UserContextHolder.getRole();
+        System.out.println("userRole:"+userRole);
+
         boolean result = productService.save(product);
         return Result.ok(result);
     }

@@ -1,4 +1,10 @@
-com/emily/mall/common/config/MybatisPlusConfig.class
+com/emily/mall/common/exeption/GlobalExceptionHandler.class
+com/emily/mall/common/config/DefaultFeignConfig.class
 com/emily/mall/common/handler/MetaObjectHandlerImpl.class
 com/emily/mall/common/result/Result.class
+com/emily/mall/common/UserContext/UserContextHolder.class
+com/emily/mall/common/jwtUtils/jwtUtils.class
+com/emily/mall/common/config/MybatisPlusConfig.class
+com/emily/mall/common/UserContext/UserContextInterceptor.class
+com/emily/mall/common/config/WebMvcConfig.class
 com/emily/mall/common/entity/BaseEntity.class

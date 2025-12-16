@@ -2,9 +2,13 @@ package com.emily.mall.user.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.emily.mall.common.result.Result;
+import com.emily.mall.user.dto.request.LoginByUserNameRequest;
+import com.emily.mall.user.dto.request.RegisterRequest;
+import com.emily.mall.user.dto.response.LoginByUserNameResponse;
 import com.emily.mall.user.entity.User;
 import com.emily.mall.user.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,19 +18,52 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/user")
+@RequiredArgsConstructor
+@Slf4j
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
-    /**
-     * 创建用户
-     */
-    @PostMapping
-    public Result<Boolean> createUser(@RequestBody User user) {
-        boolean success = userService.save(user);
-        return success ? Result.ok(success) : Result.fail("创建用户失败");
+    //所有用户登陆
+    @PostMapping("/login")
+    public Result<LoginByUserNameResponse> loginByUserName(@RequestBody LoginByUserNameRequest request){
+        log.info("用户登陆");
+        LoginByUserNameResponse  response=userService.loginByUserName(request);
+        if(response==null){
+            return Result.fail("用户名或密码错误");
+        } else{
+            return Result.ok("登陆成功",response);
+        }
+
     }
+    //所有用户注册(普通用户、商家、管理员，在role里面填写)
+    @PostMapping("/register")
+    public Result<User> userRegister(@RequestBody RegisterRequest request){
+        if(request.getRole()==null ||request.getUsername()==null||request.getPassword()==null){
+            return Result.fail("缺少必填字段");
+        }
+        User u=userService.userRegister(request);
+
+        if(u==null){
+            return Result.fail("注册失败");
+        } else{
+            return Result.ok("注册成功",u);
+        }
+
+    }
+
+
+
+
+//    /**
+//     * 创建用户
+//     */
+//    @PostMapping
+//    public Result<Boolean> createUser(@RequestBody User user) {
+//        boolean success = userService.save(user);
+//        return success ? Result.ok(success) : Result.fail("创建用户失败");
+//    }
+
 
     /**
      * 批量创建用户

@@ -23,7 +23,8 @@ spring:
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    不开启日志打印
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
     db-config:
       logic-delete-field: deleted
@@ -38,3 +39,8 @@ logging:
 feign:
   okhttp:
     enabled: true
+
+#jwt
+jwt:
+  secret: emily-is-gonna-be-rich-888888888888888888
+  expiration: 86400000

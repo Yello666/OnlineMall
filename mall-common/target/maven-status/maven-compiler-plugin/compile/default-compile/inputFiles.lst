@@ -1,4 +1,10 @@
 /Users/emily/JavaProjects/OnlineMall/mall-common/src/main/java/com/emily/mall/common/entity/BaseEntity.java
 /Users/emily/JavaProjects/OnlineMall/mall-common/src/main/java/com/emily/mall/common/config/MybatisPlusConfig.java
 /Users/emily/JavaProjects/OnlineMall/mall-common/src/main/java/com/emily/mall/common/handler/MetaObjectHandlerImpl.java
+/Users/emily/JavaProjects/OnlineMall/mall-common/src/main/java/com/emily/mall/common/config/DefaultFeignConfig.java
 /Users/emily/JavaProjects/OnlineMall/mall-common/src/main/java/com/emily/mall/common/result/Result.java
+/Users/emily/JavaProjects/OnlineMall/mall-common/src/main/java/com/emily/mall/common/exeption/GlobalExceptionHandler.java
+/Users/emily/JavaProjects/OnlineMall/mall-common/src/main/java/com/emily/mall/common/config/WebMvcConfig.java
+/Users/emily/JavaProjects/OnlineMall/mall-common/src/main/java/com/emily/mall/common/UserContext/UserContextHolder.java
+/Users/emily/JavaProjects/OnlineMall/mall-common/src/main/java/com/emily/mall/common/jwtUtils/jwtUtils.java
+/Users/emily/JavaProjects/OnlineMall/mall-common/src/main/java/com/emily/mall/common/UserContext/UserContextInterceptor.java
