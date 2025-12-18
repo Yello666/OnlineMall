@@ -1,12 +1,11 @@
 spring:
   application:
     name: user-service
-#  config:
-#    import:
-#      - nacos:${spring.application.name}.${spring.cloud.nacos.config.file-extension}?server-addr=${spring.cloud.nacos.config.server-addr}
 
-#  profiles:
-#    active: dev
+#  首先加载「默认配置」：application.yml（无环境后缀）；
+#  然后加载「dev 环境配置」：application-dev.yml（会覆盖默认配置中重复的项）；
+  profiles:
+    active: dev
   cloud:
     nacos:
       server-addr: 192.168.64.2:8848

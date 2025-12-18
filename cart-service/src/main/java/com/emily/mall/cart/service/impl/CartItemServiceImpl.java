@@ -179,6 +179,17 @@ public class CartItemServiceImpl extends ServiceImpl<CartItemMapper, CartItem> i
         this.remove(wrapper);
     }
 
+    @Override
+    public void removeByProductIds(Long userId, List<Long> productIds) {
+        if (productIds == null || productIds.isEmpty()) {
+            return;
+        }
+        LambdaQueryWrapper<CartItem> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(CartItem::getUserId, userId)
+               .in(CartItem::getProductId, productIds);
+        this.remove(wrapper);
+    }
+
     public boolean selectCartItem(Long id, Integer selected) {
         CartItem cartItem = this.getById(id);
         if (cartItem == null) {

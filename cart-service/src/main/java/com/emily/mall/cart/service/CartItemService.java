@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.emily.mall.cart.dto.CartTotalDTO;
 import com.emily.mall.cart.entity.CartItem;
 
+import java.util.List;
+
 /**
  * 购物车服务接口
  */
@@ -34,4 +36,9 @@ public interface CartItemService extends IService<CartItem> {
      * 清空购物车
      */
     void clearCart(Long userId);
+
+    /**
+     * 根据商品ID列表删除购物车商品
+     */
+    void removeByProductIds(Long userId, List<Long> productIds);
 }

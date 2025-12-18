@@ -8,8 +8,35 @@ import com.emily.mall.inventory.mapper.InventoryMapper;
 import com.emily.mall.inventory.service.InventoryService;
 import org.springframework.stereotype.Service;
 
+import com.emily.mall.common.dto.InventoryDeductDTO;
+import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
+
 @Service
 public class InventoryServiceImpl extends ServiceImpl<InventoryMapper, Inventory> implements InventoryService {
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void deductStock(List<InventoryDeductDTO> items) {
+        for (InventoryDeductDTO item : items) {
+            // 查询库存
+            LambdaQueryWrapper<Inventory> wrapper = new LambdaQueryWrapper<>();
+            wrapper.eq(Inventory::getProductId, item.getProductId());
+            Inventory inventory = this.getOne(wrapper);
+
+            if (inventory == null) {
+                throw new RuntimeException("商品 " + item.getProductId() + " 库存不存在");
+            }
+
+            if (inventory.getAvailableStock() < item.getQuantity()) {
+                throw new RuntimeException("商品 " + item.getProductId() + " 库存不足");
+            }
+
+            // 扣减库存
+            inventory.setAvailableStock(inventory.getAvailableStock() - item.getQuantity());
+            this.updateById(inventory);
+        }
+    }
 
     @Override
     public Page<Inventory> getInventoryPage(Integer pageNum, Integer pageSize, Long productId, Long warehouseId) {

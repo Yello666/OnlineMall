@@ -8,6 +8,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import java.math.BigDecimal;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import java.util.List;
+
 /**
  * 订单实体
  */
@@ -17,6 +20,12 @@ import java.math.BigDecimal;
 public class Order extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
+
+    /**
+     * 订单明细列表
+     */
+    @TableField(exist = false)
+    private List<OrderItem> orderItems;
 
     /**
      * 订单ID

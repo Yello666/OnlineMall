@@ -8,12 +8,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
+import com.emily.mall.common.dto.InventoryDeductDTO;
+
 @RestController
 @RequestMapping("/inventory")
 public class InventoryController {
 
     @Autowired
     private InventoryService inventoryService;
+
+    @PutMapping("/deduct")
+    public Result<Boolean> deductStock(@RequestBody List<InventoryDeductDTO> items) {
+        inventoryService.deductStock(items);
+        return Result.ok(true);
+    }
 
     @PostMapping
     public Result<Boolean> createInventory(@RequestBody Inventory inventory) {
