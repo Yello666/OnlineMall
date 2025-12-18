@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.emily.mall.common.result.Result;
 import com.emily.mall.order.entity.Order;
 import com.emily.mall.order.service.OrderService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,17 +15,17 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/order")
+@RequiredArgsConstructor
 public class OrderController {
 
-    @Autowired
-    private OrderService orderService;
 
+    private final OrderService orderService;
     /**
      * 创建订单
      */
     @PostMapping
     public Result<Boolean> createOrder(@RequestBody Order order) {
-        boolean success = orderService.save(order);
+        boolean success = orderService.createOrder(order);
         return success ? Result.ok(success) : Result.fail("创建订单失败");
     }
 

@@ -1,46 +1,54 @@
 server:
   port: 8081
 
-spring:
-  application:
-    name: user-service
-  config:
-    import:
-      - nacos:${spring.application.name}.${spring.cloud.nacos.config.file-extension}?server-addr=${spring.cloud.nacos.config.server-addr}
-  cloud:
-    nacos:
-      discovery:
-        server-addr: 192.168.64.2:8848
-      config:
-        server-addr: 192.168.64.2:8848
-        file-extension: yaml
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.64.2:3306/mall_user?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
-    username: root
-    password: 123456
+#spring:
+#  application:
+#    name: user-service
+#  config:
+#    import:
+#      - nacos:${spring.application.name}.${spring.cloud.nacos.config.file-extension}?server-addr=${spring.cloud.nacos.config.server-addr}
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 192.168.64.2:8848
+#      config:
+#        server-addr: 192.168.64.2:8848
+#        file-extension: yaml
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://${db.host:192.168.64.2}:${db.port:3306}/${db.name}?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
+#    username: ${db.user:root}
+#    password: ${db.password:123456}
 
-mybatis-plus:
-  configuration:
-    map-underscore-to-camel-case: true
-#    不开启日志打印
-#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-  global-config:
-    db-config:
-      logic-delete-field: deleted
-      logic-delete-value: 1
-      logic-not-delete-value: 0
+#mybatis-plus:
+#  configuration:
+#    map-underscore-to-camel-case: true
+##    不开启日志打印
+##    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#  global-config:
+#    db-config:
+#      logic-delete-field: deleted
+#      logic-delete-value: 1
+#      logic-not-delete-value: 0
 # 配置日志级别 debug的时候会输出更多的日志（feign只有在所在包的日志级别为debug的时候才会输出请求日志）
 logging:
   level:
     com.emily: info
+#
+##feign连接池
+#feign:
+#  okhttp:
+#    enabled: true
+#
+##jwt
+#jwt:
+#  secret: emily-is-gonna-be-rich-888888888888888888
+#  expiration: 86400000
 
-#feign连接池
-feign:
-  okhttp:
-    enabled: true
-
-#jwt
-jwt:
-  secret: emily-is-gonna-be-rich-888888888888888888
-  expiration: 86400000
+#db
+db:
+  host: 192.168.64.2
+  port: 3306
+  name: mall_user
+  user: root
+  password: 123456

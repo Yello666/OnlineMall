@@ -9,7 +9,7 @@
     <property name="LOG_PATTERN" value="[${APP_NAME}] %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{50} - %msg%n"/>
     <property name="LOG_CHARSET" value="UTF-8"/>
     <!-- 2. 微服务日志目录（区分不同服务，如user-service/order-service） -->
-    <property name="LOG_DIR" value="logs/${APP_NAME}"/>
+    <property name="LOG_DIR" value="server-logs/${APP_NAME}"/>
 
     <!-- 3. 控制台输出 -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">

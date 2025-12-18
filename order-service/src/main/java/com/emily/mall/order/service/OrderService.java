@@ -9,6 +9,10 @@ import com.emily.mall.order.entity.Order;
  */
 public interface OrderService extends IService<Order> {
 
+    //用户下单
+    boolean createOrder(Order order);
+
+
     /**
      * 分页查询订单
      */

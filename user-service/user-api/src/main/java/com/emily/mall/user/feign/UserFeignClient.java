@@ -34,3 +34,4 @@ public interface UserFeignClient {
     @GetMapping("/username/{username}")
     Result<User> getUserByUsername(@PathVariable("username") String username);
 }
+

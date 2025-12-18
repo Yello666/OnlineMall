@@ -1,3 +1,18 @@
 spring:
   application:
     name: user-service
+#  config:
+#    import:
+#      - nacos:${spring.application.name}.${spring.cloud.nacos.config.file-extension}?server-addr=${spring.cloud.nacos.config.server-addr}
+
+#  profiles:
+#    active: dev
+  cloud:
+    nacos:
+      server-addr: 192.168.64.2:8848
+      config:
+        file-extension: yml
+        shared-configs:
+          - data-id: shared-jdbc.yml
+          - data-id: shared-feign.yml
+          - data-id: shared-jwt.yml

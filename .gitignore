@@ -1,1 +1,48 @@
-/logs
+############################
+# Maven / Java
+############################
+**/target/
+*.jar
+*.war
+*.ear
+*.class
+
+############################
+# Logs
+############################
+logs/
+*.log
+
+############################
+# Spring Boot
+############################
+# 本地配置（如有 profile 覆盖）
+application-*.yml
+application-*.yaml
+bootstrap-*.yml
+bootstrap-*.yaml
+
+############################
+# IDE - IntelliJ IDEA
+############################
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+
+############################
+# macOS
+############################
+.DS_Store
+.AppleDouble
+.LSOverride
+
+
+
+############################
+# Docker
+############################
+docker-compose.override.yml
+

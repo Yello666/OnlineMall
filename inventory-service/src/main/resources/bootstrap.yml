@@ -1,9 +1,9 @@
 spring:
   application:
-    name: user-service
+    name: inventory-service
 
-#  首先加载「默认配置」：application.yml（无环境后缀）；
-#  然后加载「dev 环境配置」：application-dev.yml（会覆盖默认配置中重复的项）；
+  #  首先加载「默认配置」：application.yml（无环境后缀）；
+  #  然后加载「dev 环境配置」：application-dev.yml（会覆盖默认配置中重复的项）；
   profiles:
     active: dev
   cloud:
@@ -15,3 +15,4 @@ spring:
           - data-id: shared-jdbc.yml
           - data-id: shared-feign.yml
           - data-id: shared-jwt.yml
+          - data-id: shared-seata.yml

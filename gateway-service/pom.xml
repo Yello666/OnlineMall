@@ -82,7 +82,7 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
-        <!-- 新增：Nacos配置中心需要的Bootstrap依赖 -->
+        <!-- Nacos配置中心需要的Bootstrap依赖 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
