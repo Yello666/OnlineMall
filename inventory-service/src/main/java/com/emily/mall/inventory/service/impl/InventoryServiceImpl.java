@@ -63,8 +63,10 @@ public class InventoryServiceImpl extends ServiceImpl<InventoryMapper, Inventory
 
     @Override
     public Inventory getInventoryByProductCode(String productCode) {
-        LambdaQueryWrapper<Inventory> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(Inventory::getProductCode, productCode);
-        return this.getOne(wrapper);
+        // productCode 字段已被注释，暂时返回 null
+        // LambdaQueryWrapper<Inventory> wrapper = new LambdaQueryWrapper<>();
+        // wrapper.eq(Inventory::getProductCode, productCode);
+        // return this.getOne(wrapper);
+        return null;
     }
 }

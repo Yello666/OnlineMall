@@ -9,6 +9,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 /**
  * 用户实体
  */
@@ -17,13 +19,18 @@ import lombok.NoArgsConstructor;
 @TableName("tb_user")
 @NoArgsConstructor
 public class User extends BaseEntity {
-    //??这是uid？下面的不已经是uid了吗？
+    //jdk对象序列化必须声明的序列化版本。用于序列化和反序列化。因为继承了BaseEntity
     private static final long serialVersionUID = 1L;
+
+    //用户余额点
+    private BigDecimal balance;
 
     /**
      * 用户ID
      */
-    @TableId(type = IdType.AUTO)
+    //IdType.ASSIGN_ID	雪花算法（Snowflake）生成主键（分布式环境首选）分布式系统、高并发场景，需要全局唯一 ID	无需依赖数据库，MyBatis-Plus 自动生成
+    //IdType.ASSIGN_UUID	生成 UUID 作为主键（字符串类型）128 位长度的全局唯一字符串
+    @TableId(type = IdType.ASSIGN_ID)
     private Long id;
 
     /**
@@ -78,5 +85,6 @@ public class User extends BaseEntity {
         this.role=request.getRole();
         this.status=1;
         this.deleted=0;
+        this.balance= BigDecimal.valueOf(1000);//默认初始余额为1000
     }
 }

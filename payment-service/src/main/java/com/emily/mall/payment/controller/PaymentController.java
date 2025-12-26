@@ -4,16 +4,24 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.emily.mall.common.result.Result;
 import com.emily.mall.payment.entity.Payment;
 import com.emily.mall.payment.service.PaymentService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
 @RequestMapping("/payment")
+@RequiredArgsConstructor
 public class PaymentController {
+    private final PaymentService paymentService;
 
-    @Autowired
-    private PaymentService paymentService;
+
+    //用户支付订单
+    @PostMapping
+    public Result<Payment> payOrder(@RequestBody Order order){
+
+    }
 
     @PostMapping
     public Result<Boolean> createPayment(@RequestBody Payment payment) {

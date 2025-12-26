@@ -57,7 +57,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
         String token=jwtUtils.generateToken(u.getId(),u.getUsername(),u.getRole());
         LoginByUserNameResponse response=new LoginByUserNameResponse();
-        response.setId(u.getId());
+        response.setId(String.valueOf(u.getId()));
         response.setUsername(u.getUsername());
         response.setToken(token);
         response.setRole(u.getRole());

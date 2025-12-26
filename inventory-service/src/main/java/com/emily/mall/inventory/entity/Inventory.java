@@ -20,7 +20,7 @@ public class Inventory extends BaseEntity {
     /**
      * 库存ID
      */
-    @TableId(type = IdType.AUTO)
+    @TableId(type = IdType.ASSIGN_ID)
     private Long id;
 
     /**
@@ -28,13 +28,11 @@ public class Inventory extends BaseEntity {
      */
     private Long productId;
 
-    /**
-     * 商品编码
-     */
-    private String productCode;
+    //商品编码
+//    private String productCode;
 
     /**
-     * 仓库ID
+     * 仓库ID (库存所在的仓库)
      */
     private Long warehouseId;
 
@@ -51,15 +49,13 @@ public class Inventory extends BaseEntity {
     /**
      * 总库存
      */
-    private Integer totalStock;
+    private Integer totalStock;//可用库存+锁定库存
 
     /**
      * 库存预警值
      */
-    private Integer warningStock;
+    private Integer warningStock;//低于这个值可以触发补货提醒
 
-    /**
-     * 备注
-     */
-    private String remark;
+    //备注
+//    private String remark;
 }

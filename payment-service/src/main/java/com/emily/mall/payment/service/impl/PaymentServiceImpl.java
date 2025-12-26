@@ -6,10 +6,16 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.emily.mall.payment.entity.Payment;
 import com.emily.mall.payment.mapper.PaymentMapper;
 import com.emily.mall.payment.service.PaymentService;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PaymentServiceImpl extends ServiceImpl<PaymentMapper, Payment> implements PaymentService {
+    //支付订单
+    @Override
+    public Payment payOrder(Order order){
+
+    }
 
     @Override
     public Page<Payment> getPaymentPage(Integer pageNum, Integer pageSize, Long userId, Integer status) {

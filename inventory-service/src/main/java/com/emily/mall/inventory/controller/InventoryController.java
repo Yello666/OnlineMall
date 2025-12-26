@@ -23,6 +23,26 @@ public class InventoryController {
         return Result.ok(true);
     }
 
+    /**
+     * 根据商品ID更新库存
+     */
+    @PutMapping("/update")
+    public Result<Boolean> updateInventoryByProductId(@RequestParam("productId") Long productId,
+                                                       @RequestParam("newStock") Integer newStock) {
+        try {
+            Inventory inventory = inventoryService.getInventoryByProductId(productId);
+            if (inventory == null) {
+                return Result.fail("库存不存在");
+            }
+            inventory.setAvailableStock(newStock);
+            inventory.setTotalStock(newStock + (inventory.getLockedStock() != null ? inventory.getLockedStock() : 0));
+            boolean success = inventoryService.updateById(inventory);
+            return success ? Result.ok(true) : Result.fail("更新库存失败");
+        } catch (Exception e) {
+            return Result.fail("更新库存失败: " + e.getMessage());
+        }
+    }
+
     @PostMapping
     public Result<Boolean> createInventory(@RequestBody Inventory inventory) {
         boolean success = inventoryService.save(inventory);

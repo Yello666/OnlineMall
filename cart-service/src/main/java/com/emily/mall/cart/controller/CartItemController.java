@@ -15,6 +15,21 @@ public class CartItemController {
     @Autowired
     private CartItemService cartItemService;
 
+    /**
+     * 添加商品到购物车
+     */
+    @PostMapping("/add")
+    public Result<Boolean> addCartItem(@RequestParam("userId") Long userId,
+                                        @RequestParam("productId") Long productId,
+                                        @RequestParam("quantity") Integer quantity) {
+        try {
+            cartItemService.addCartItem(userId, productId, quantity);
+            return Result.ok(true);
+        } catch (Exception e) {
+            return Result.fail("添加到购物车失败: " + e.getMessage());
+        }
+    }
+
     @DeleteMapping("/clear")
     public Result<Boolean> clearCartItems(@RequestParam("productIds") List<Long> productIds) {
         String userIdStr = UserContextHolder.getUserId();

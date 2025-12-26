@@ -45,6 +45,6 @@ public class BaseEntity implements Serializable {
     /**
      * 删除标记(0:未删除 1:已删除)
      */
-    @TableLogic
+    @TableLogic //mybatis-plus自动维护
     private Integer deleted;
 }

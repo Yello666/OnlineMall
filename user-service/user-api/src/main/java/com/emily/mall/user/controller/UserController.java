@@ -5,10 +5,12 @@ import com.emily.mall.common.result.Result;
 import com.emily.mall.user.dto.request.LoginByUserNameRequest;
 import com.emily.mall.user.dto.request.RegisterRequest;
 import com.emily.mall.user.dto.response.LoginByUserNameResponse;
+import com.emily.mall.user.dto.response.UserVo;
 import com.emily.mall.user.entity.User;
 import com.emily.mall.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,19 +40,84 @@ public class UserController {
     }
     //所有用户注册(普通用户、商家、管理员，在role里面填写)
     @PostMapping("/register")
-    public Result<User> userRegister(@RequestBody RegisterRequest request){
+    public Result<UserVo> userRegister(@RequestBody RegisterRequest request){
         if(request.getRole()==null ||request.getUsername()==null||request.getPassword()==null){
             return Result.fail("缺少必填字段");
         }
         User u=userService.userRegister(request);
+        UserVo vo=new UserVo();
+
 
         if(u==null){
             return Result.fail("注册失败");
         } else{
-            return Result.ok("注册成功",u);
+            BeanUtils.copyProperties(u,vo);
+            //这里vo的id是null，因为BeanUtils不支持将Long类型变成字符串类型，需要手动转为字符串
+            vo.setId(String.valueOf(u.getId()));
+            return Result.ok("注册成功",vo);
         }
 
     }
+
+    //查看个人信息
+    //根据用户id进行查询，前端传递字符串类型也可以完成自动转换
+    @GetMapping("/id")
+    public Result<UserVo> getUser(@RequestParam Long id) {
+        User user = userService.getById(id);
+        if (user == null) {
+            return Result.fail("用户不存在");
+        }
+        UserVo userVo = new UserVo();
+        BeanUtils.copyProperties(user, userVo);//将名字一样的字段直接映射过去，避免循环依赖了
+        userVo.setId(String.valueOf(user.getId()));
+        return Result.ok(userVo);
+    }
+
+     //根据用户名查询用户
+    @GetMapping("/username")
+    public Result<UserVo> getUserByUsername(@RequestParam String username) {
+        User user = userService.getUserByUsername(username);
+        if (user == null) {
+            return Result.fail("用户不存在");
+        }
+        UserVo userVo = new UserVo();
+        BeanUtils.copyProperties(user, userVo);
+        userVo.setId(String.valueOf(user.getId()));
+        return Result.ok(userVo);
+    }
+
+//    /**
+//     * 批量查询用户
+//     */
+//    @GetMapping("/batch")
+//    public Result<List<User>> getUserBatch(@RequestParam List<Long> ids) {
+//        List<User> users = userService.listByIds(ids);
+//        return Result.ok(users);
+//    }
+
+//    /**
+//     * 查询所有用户
+//     */
+//    @GetMapping("/list")
+//    public Result<List<User>> getUserList() {
+//        List<User> users = userService.list();
+//        return Result.ok(users);
+//    }
+
+//    /**
+//     * 分页查询用户
+//     */
+//    @GetMapping("/page")
+//    public Result<Page<User>> getUserPage(
+//            @RequestParam(defaultValue = "1") Integer pageNum,
+//            @RequestParam(defaultValue = "10") Integer pageSize,
+//            @RequestParam(required = false) String keyword) {
+//        Page<User> page = userService.getUserPage(pageNum, pageSize, keyword);
+//        return Result.ok(page);
+//    }
+
+
+
 
 
 
@@ -110,51 +177,4 @@ public class UserController {
         return success ? Result.ok(success) : Result.fail("批量更新用户失败");
     }
 
-    /**
-     * 根据ID查询用户
-     */
-    @GetMapping("/{id}")
-    public Result<User> getUser(@PathVariable Long id) {
-        User user = userService.getById(id);
-        return user != null ? Result.ok(user) : Result.fail("用户不存在");
-    }
-
-    /**
-     * 批量查询用户
-     */
-    @GetMapping("/batch")
-    public Result<List<User>> getUserBatch(@RequestParam List<Long> ids) {
-        List<User> users = userService.listByIds(ids);
-        return Result.ok(users);
-    }
-
-    /**
-     * 查询所有用户
-     */
-    @GetMapping("/list")
-    public Result<List<User>> getUserList() {
-        List<User> users = userService.list();
-        return Result.ok(users);
-    }
-
-    /**
-     * 分页查询用户
-     */
-    @GetMapping("/page")
-    public Result<Page<User>> getUserPage(
-            @RequestParam(defaultValue = "1") Integer pageNum,
-            @RequestParam(defaultValue = "10") Integer pageSize,
-            @RequestParam(required = false) String keyword) {
-        Page<User> page = userService.getUserPage(pageNum, pageSize, keyword);
-        return Result.ok(page);
-    }
-
-    /**
-     * 根据用户名查询用户
-     */
-    @GetMapping("/username/{username}")
-    public Result<User> getUserByUsername(@PathVariable String username) {
-        User user = userService.getUserByUsername(username);
-        return user != null ? Result.ok(user) : Result.fail("用户不存在");
-    }
 }
