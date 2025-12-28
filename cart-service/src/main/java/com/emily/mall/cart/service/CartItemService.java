@@ -2,8 +2,10 @@ package com.emily.mall.cart.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+
 import com.emily.mall.cart.dto.CartTotalDTO;
 import com.emily.mall.cart.entity.CartItem;
+
 
 import java.util.List;
 
@@ -15,12 +17,12 @@ public interface CartItemService extends IService<CartItem> {
     /**
      * 添加商品到购物车
      */
-    void addCartItem(Long userId, Long productId, Integer quantity);
+    CartItem addCartItem(Long userId, Long productId, Integer quantity);
 
     /**
      * 更新购物车商品数量
      */
-    void updateQuantity(Long id, Integer quantity);
+    CartItem updateQuantityById(Long id, Integer quantity);
 
     /**
      * 获取用户购物车列表
@@ -30,7 +32,7 @@ public interface CartItemService extends IService<CartItem> {
     /**
      * 计算购物车总价
      */
-    CartTotalDTO calculateTotal(Long userId);
+    CartTotalDTO calculateSelectedTotalByUserId(Long userId);
 
     /**
      * 清空购物车
@@ -40,5 +42,5 @@ public interface CartItemService extends IService<CartItem> {
     /**
      * 根据商品ID列表删除购物车商品
      */
-    void removeByProductIds(Long userId, List<Long> productIds);
+    Boolean removeByProductIds(Long userId, List<Long> productIds);
 }

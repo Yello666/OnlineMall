@@ -30,13 +30,13 @@ public class Order extends BaseEntity {
     /**
      * 订单ID
      */
-    @TableId(type = IdType.AUTO)
+    @TableId(type = IdType.ASSIGN_ID)
     private Long id;
 
-    /**
-     * 订单号
-     */
-    private String orderNo;
+//    /**
+//     * 订单号
+//     */
+//    private String orderNo;
 
     /**
      * 用户ID
@@ -53,10 +53,10 @@ public class Order extends BaseEntity {
      */
     private BigDecimal payAmount;
 
-    /**
-     * 运费
-     */
-    private BigDecimal freight;
+//    /**
+//     * 运费
+//     */
+//    private BigDecimal freight;
 
     /**
      * 优惠金额

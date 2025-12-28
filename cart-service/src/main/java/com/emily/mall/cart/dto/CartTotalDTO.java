@@ -13,17 +13,7 @@ public class CartTotalDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 购物车商品总数量
-     */
-    private Integer totalQuantity;
-
-    /**
-     * 购物车商品总金额
-     */
-    private BigDecimal totalAmount;
-
-    /**
-     * 已选中商品数量
+     * 已选中商品个数（一共选中了多少件商品）
      */
     private Integer selectedQuantity;
 

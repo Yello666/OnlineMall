@@ -11,7 +11,7 @@ import lombok.EqualsAndHashCode;
 public class Brand extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
-    @TableId(type = IdType.AUTO)
+    @TableId(type = IdType.ASSIGN_ID)
     private Long id;
 
     private String name;        // 品牌名称，如 "Apple"

@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     
     <parent>
-        <groupId>com.emily</groupId>
+        <groupId>com.emily.mall</groupId>
         <artifactId>online-mall</artifactId>
         <version>1.0.0</version>
     </parent>
@@ -17,8 +17,9 @@
     <description>商品服务</description>
 
     <dependencies>
+<!--        通用模块-->
         <dependency>
-            <groupId>com.emily</groupId>
+            <groupId>com.emily.mall</groupId>
             <artifactId>mall-common</artifactId>
             <version>1.0.0</version>
         </dependency>
@@ -61,5 +62,24 @@
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
             <!-- 无需引入版本，通过 Spring Cloud Alibaba 自动引入兼容版本 -->
         </dependency>
+<!--        amqp-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+<!--        json序列化-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>

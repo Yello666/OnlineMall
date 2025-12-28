@@ -3,13 +3,15 @@ package com.emily.mall.common.feign;
 import com.emily.mall.common.config.DefaultFeignConfig;
 import com.emily.mall.common.result.Result;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(value = "cart-service", configuration = DefaultFeignConfig.class)
+@FeignClient(value = "cart-service",url="http://192.168.64.1:8086", configuration = DefaultFeignConfig.class)
+@Component
 public interface CartClient {
 
     /**

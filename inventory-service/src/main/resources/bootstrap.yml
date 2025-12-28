@@ -16,3 +16,4 @@ spring:
           - data-id: shared-feign.yml
           - data-id: shared-jwt.yml
           - data-id: shared-seata.yml
+          - data-id: shared-rabbitmq.yml

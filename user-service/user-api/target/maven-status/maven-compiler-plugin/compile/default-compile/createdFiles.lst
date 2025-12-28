@@ -1,3 +1,5 @@
 com/emily/mall/user/UserServiceApplication.class
 com/emily/mall/user/feign/UserFeignClient.class
 com/emily/mall/user/controller/UserController.class
+com/emily/mall/user/feign/UserFeignFallbackFactory.class
+com/emily/mall/user/feign/UserFeignFallbackFactory$1.class

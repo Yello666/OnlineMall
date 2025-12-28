@@ -10,7 +10,7 @@ public class DefaultFeignConfig {
     @Bean
     public Logger.Level feignLoggerLevel(){
         //设置请求的日志类型
-        return Logger.Level.BASIC;
+        return Logger.Level.FULL;
     }
 
     //每一次调用openfeign发请求，都会在请求头处添加userinfo的Header

@@ -1,6 +1,7 @@
 com/emily/mall/common/exeption/GlobalExceptionHandler.class
 com/emily/mall/common/config/DefaultFeignConfig.class
 com/emily/mall/common/result/Result.class
+com/emily/mall/common/dto/InventoryUpdateDto.class
 com/emily/mall/common/feign/CartClient.class
 com/emily/mall/common/feign/InventoryClient.class
 com/emily/mall/common/config/WebMvcConfig.class

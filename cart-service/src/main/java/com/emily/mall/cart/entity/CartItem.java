@@ -45,7 +45,7 @@ public class CartItem extends BaseEntity {
     private String productImage;
 
     /**
-     * 商品价格
+     * 商品单价
      */
     private BigDecimal price;
 

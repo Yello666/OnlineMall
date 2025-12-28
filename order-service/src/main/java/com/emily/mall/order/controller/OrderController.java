@@ -21,7 +21,7 @@ public class OrderController {
 
     private final OrderService orderService;
     /**
-     * 创建订单
+     * 1. 创建订单（用户下单）
      */
     @PostMapping
     public Result<Boolean> createOrder(@RequestBody Order order) {
@@ -29,14 +29,14 @@ public class OrderController {
         return success ? Result.ok(success) : Result.fail("创建订单失败");
     }
 
-    /**
-     * 批量创建订单
-     */
-    @PostMapping("/batch")
-    public Result<Boolean> createOrderBatch(@RequestBody List<Order> orders) {
-        boolean success = orderService.saveBatch(orders);
-        return success ? Result.ok(success) : Result.fail("批量创建订单失败");
-    }
+//    /**
+//     * 批量创建订单
+//     */
+//    @PostMapping("/batch")
+//    public Result<Boolean> createOrderBatch(@RequestBody List<Order> orders) {
+//        boolean success = orderService.saveBatch(orders);
+//        return success ? Result.ok(success) : Result.fail("批量创建订单失败");
+//    }
 
     /**
      * 根据ID删除订单
@@ -117,11 +117,11 @@ public class OrderController {
     /**
      * 根据订单号查询订单
      */
-    @GetMapping("/orderNo/{orderNo}")
-    public Result<Order> getOrderByOrderNo(@PathVariable String orderNo) {
-        Order order = orderService.getOrderByOrderNo(orderNo);
-        return order != null ? Result.ok(order) : Result.fail("订单不存在");
-    }
+//    @GetMapping("/orderNo/{orderNo}")
+//    public Result<Order> getOrderByOrderNo(@PathVariable String orderNo) {
+//        Order order = orderService.getOrderByOrderNo(orderNo);
+//        return order != null ? Result.ok(order) : Result.fail("订单不存在");
+//    }
 
     /**
      * 根据用户ID查询订单列表

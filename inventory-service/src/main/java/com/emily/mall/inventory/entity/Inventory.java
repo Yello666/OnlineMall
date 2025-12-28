@@ -31,10 +31,8 @@ public class Inventory extends BaseEntity {
     //商品编码
 //    private String productCode;
 
-    /**
-     * 仓库ID (库存所在的仓库)
-     */
-    private Long warehouseId;
+    //仓库ID (库存所在的仓库)
+//    private Long warehouseId;
 
     /**
      * 可用库存

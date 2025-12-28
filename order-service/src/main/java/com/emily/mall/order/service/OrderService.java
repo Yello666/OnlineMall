@@ -21,8 +21,8 @@ public interface OrderService extends IService<Order> {
     /**
      * 根据订单号查询订单
      */
-    Order getOrderByOrderNo(String orderNo);
-
+    Order getOrderByOrderId(Long id);
+//
     /**
      * 根据用户ID查询订单列表
      */
