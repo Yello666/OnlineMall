@@ -20,6 +20,13 @@ public class GlobalExceptionHandler {
         log.error("出错了",e);
         return Result.fail("出错啦，请联系工作人员～");
     }
+
+    @ExceptionHandler
+    public Result<Exception> BusinessExceptionHandler(BusinessException e){
+        log.error("业务逻辑执行出错，可能为库存扣减或余额扣减出错",e);
+        return Result.fail(500,"下单或支付异常，请联系工作人员～");
+    }
+
     @ExceptionHandler
     public Result<Exception> HttpRequestMethodNotSupportedExceptionHandler(HttpRequestMethodNotSupportedException e){
         log.error("请求类型出错或者路由出错",e);

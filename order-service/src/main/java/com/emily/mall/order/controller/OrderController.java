@@ -1,14 +1,19 @@
 package com.emily.mall.order.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.emily.mall.common.exeption.BusinessException;
 import com.emily.mall.common.result.Result;
 import com.emily.mall.order.entity.Order;
+import com.emily.mall.order.entity.OrderItem;
 import com.emily.mall.order.service.OrderService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static com.emily.mall.common.utils.utils.getCurrentUserIdSafely;
 
 /**
  * 订单控制器
@@ -16,6 +21,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/order")
 @RequiredArgsConstructor
+@Slf4j
 public class OrderController {
 
 
@@ -24,9 +30,53 @@ public class OrderController {
      * 1. 创建订单（用户下单）
      */
     @PostMapping
-    public Result<Boolean> createOrder(@RequestBody Order order) {
-        boolean success = orderService.createOrder(order);
-        return success ? Result.ok(success) : Result.fail("创建订单失败");
+    public Result<Order> createOrder(@RequestBody Order order) {
+        if (order.getOrderItems() == null || order.getOrderItems().isEmpty()) {
+            log.error("order中没有商品，无法创建订单");
+            return Result.fail("order中没有商品，无法创建订单");
+        }
+        Order orderRes = orderService.createOrder(order);
+        return orderRes!=null ? Result.ok(orderRes) : Result.fail("创建订单失败");
+    }
+
+    /**
+     * 2.分页查询用户订单
+     */
+    @GetMapping("/page")
+    public Result<Page<Order>> getOrderPage(
+            @RequestParam(defaultValue = "1") Integer pageNum,
+            @RequestParam(defaultValue = "10") Integer pageSize,
+            @RequestParam(required = false) Integer status) {
+        Long userId=getCurrentUserIdSafely();
+        Page<Order> page = orderService.getOrderPage(pageNum, pageSize, userId, status);
+        return Result.ok(page);
+    }
+
+
+    /**
+     * 3.根据ID删除订单
+     */
+    @DeleteMapping("/{id}")
+    public Result<Boolean> deleteOrder(@PathVariable Long id) {
+        boolean success = orderService.removeById(id);
+        return success ? Result.ok(success) : Result.fail("删除订单失败");
+    }
+
+    /**
+     * 4.根据ID查询订单
+     */
+    @GetMapping("/{id}")
+    public Result<Order> getOrder(@PathVariable Long id) {
+        Order order = orderService.getById(id);
+        return order != null ? Result.ok(order) : Result.fail("订单不存在");
+    }
+
+    //更新订单状态
+    @PutMapping("/status")
+    public Result<Boolean> updateOrderStatus(@RequestParam Long orderId,
+                                             @RequestParam Integer newStatus){
+        Boolean success = orderService.updateOrderStatus(orderId,newStatus);
+        return success ? Result.ok(success) : Result.fail("更新订单状态失败，数据库异常");
     }
 
 //    /**
@@ -38,14 +88,7 @@ public class OrderController {
 //        return success ? Result.ok(success) : Result.fail("批量创建订单失败");
 //    }
 
-    /**
-     * 根据ID删除订单
-     */
-    @DeleteMapping("/{id}")
-    public Result<Boolean> deleteOrder(@PathVariable Long id) {
-        boolean success = orderService.removeById(id);
-        return success ? Result.ok(success) : Result.fail("删除订单失败");
-    }
+
 
     /**
      * 批量删除订单
@@ -74,14 +117,7 @@ public class OrderController {
         return success ? Result.ok(success) : Result.fail("批量更新订单失败");
     }
 
-    /**
-     * 根据ID查询订单
-     */
-    @GetMapping("/{id}")
-    public Result<Order> getOrder(@PathVariable Long id) {
-        Order order = orderService.getById(id);
-        return order != null ? Result.ok(order) : Result.fail("订单不存在");
-    }
+
 
     /**
      * 批量查询订单
@@ -101,37 +137,16 @@ public class OrderController {
         return Result.ok(orders);
     }
 
-    /**
-     * 分页查询订单
-     */
-    @GetMapping("/page")
-    public Result<Page<Order>> getOrderPage(
-            @RequestParam(defaultValue = "1") Integer pageNum,
-            @RequestParam(defaultValue = "10") Integer pageSize,
-            @RequestParam(required = false) Long userId,
-            @RequestParam(required = false) Integer status) {
-        Page<Order> page = orderService.getOrderPage(pageNum, pageSize, userId, status);
-        return Result.ok(page);
-    }
+
 
     /**
-     * 根据订单号查询订单
+     * 根据订单流水号查询订单
      */
-//    @GetMapping("/orderNo/{orderNo}")
-//    public Result<Order> getOrderByOrderNo(@PathVariable String orderNo) {
-//        Order order = orderService.getOrderByOrderNo(orderNo);
-//        return order != null ? Result.ok(order) : Result.fail("订单不存在");
-//    }
-
-    /**
-     * 根据用户ID查询订单列表
-     */
-    @GetMapping("/user/{userId}")
-    public Result<Page<Order>> getOrdersByUserId(
-            @PathVariable Long userId,
-            @RequestParam(defaultValue = "1") Integer pageNum,
-            @RequestParam(defaultValue = "10") Integer pageSize) {
-        Page<Order> page = orderService.getOrdersByUserId(userId, pageNum, pageSize);
-        return Result.ok(page);
+    @GetMapping("/orderNo/{orderNo}")
+    public Result<Order> getOrderByOrderNo(@PathVariable String orderNo) {
+        Order order = orderService.getOrderByOrderNo(orderNo);
+        return order != null ? Result.ok(order) : Result.fail("订单不存在");
     }
+
+
 }

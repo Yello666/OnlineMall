@@ -1,7 +1,12 @@
 /Users/emily/JavaProjects/OnlineMall/cart-service/src/main/java/com/emily/mall/cart/CartServiceApplication.java
 /Users/emily/JavaProjects/OnlineMall/cart-service/src/main/java/com/emily/mall/cart/entity/CartItem.java
 /Users/emily/JavaProjects/OnlineMall/cart-service/src/main/java/com/emily/mall/cart/mapper/CartItemMapper.java
+/Users/emily/JavaProjects/OnlineMall/cart-service/src/main/java/com/emily/mall/cart/config/FanoutConfig.java
+/Users/emily/JavaProjects/OnlineMall/cart-service/src/main/java/com/emily/mall/cart/MQListener/cartClearQueueListener.java
+/Users/emily/JavaProjects/OnlineMall/cart-service/src/main/java/com/emily/mall/cart/dto/CartQuantityUpdateDto.java
+/Users/emily/JavaProjects/OnlineMall/cart-service/src/main/java/com/emily/mall/cart/dto/CartItemDto.java
 /Users/emily/JavaProjects/OnlineMall/cart-service/src/main/java/com/emily/mall/cart/service/CartItemService.java
 /Users/emily/JavaProjects/OnlineMall/cart-service/src/main/java/com/emily/mall/cart/dto/CartTotalDTO.java
 /Users/emily/JavaProjects/OnlineMall/cart-service/src/main/java/com/emily/mall/cart/controller/CartItemController.java
 /Users/emily/JavaProjects/OnlineMall/cart-service/src/main/java/com/emily/mall/cart/service/impl/CartItemServiceImpl.java
+/Users/emily/JavaProjects/OnlineMall/cart-service/src/main/java/com/emily/mall/cart/config/MessageConverter2.java

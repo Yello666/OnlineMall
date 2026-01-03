@@ -50,7 +50,7 @@ public class CartItemController {
         }
     }
 
-    //3.商品移除购物车（默认批量移除）
+    //3.购物车移除商品列表（改为数量减一）
     @DeleteMapping("/clear")
     public Result<Boolean> clearCartItems(@RequestParam("productIds") List<Long> productIds) {
 
@@ -58,7 +58,8 @@ public class CartItemController {
         if(userId == null){
             return Result.fail("无法获取用户ID");
         }
-        Boolean success=cartItemService.removeByProductIds(userId, productIds);
+//        Boolean success=cartItemService.removeByProductIds(userId, productIds);
+        Boolean success=cartItemService.minusByProductIds(userId,productIds);
         if (success) {
             return Result.ok(true);
         }
@@ -67,12 +68,12 @@ public class CartItemController {
 
     //4.计算购物车选中商品的总价格：输入：用户id
     @GetMapping("/count")
-    public Result<CartTotalDTO> countCartPrice(){
+    public Result<CartTotalDTO> countCartPrice(@RequestParam("productIds") List<Long> productIds){
         Long userId = getCurrentUserIdSafely();
         if(userId == null){
             return Result.fail("无法获取用户ID");
         }
-        CartTotalDTO res=cartItemService.calculateSelectedTotalByUserId(userId);
+        CartTotalDTO res=cartItemService.calculateSelectedTotalByUserId(userId,productIds);
         if(res!=null){
             return Result.ok(res);
         }

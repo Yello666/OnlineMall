@@ -1,5 +1,6 @@
 package com.emily.mall.product.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.emily.mall.common.dto.ProductForCartVo;
 import com.emily.mall.common.result.Result;
 import com.emily.mall.product.entity.Product;
@@ -75,6 +76,10 @@ public class ProductController {
     @GetMapping("/forCart")
     public ProductForCartVo getProductForCart(@RequestParam("id") Long id) {
         Product product = productService.getById(id);
+        if(product==null){
+            log.error("不存在的商品{}",id);
+            return null;
+        }
         ProductForCartVo productForCartVo = new ProductForCartVo();
         productForCartVo.setId(product.getId());
         productForCartVo.setName(product.getName());
@@ -82,6 +87,19 @@ public class ProductController {
         productForCartVo.setPrice(product.getPrice());
         log.debug(String.valueOf(productForCartVo));
         return productForCartVo;
+    }
+
+    /**
+     * 商品列表分页查询
+     * @param pageNum 页码（默认1）
+     * @param pageSize 每页条数（默认10）
+     * @return 分页商品数据
+     */
+    @GetMapping("/page")
+    public Result<Page<Product>> getProductPageList(
+            @RequestParam(required = false, defaultValue = "1") Long pageNum,
+            @RequestParam(required = false, defaultValue = "10") Long pageSize) {
+        return productService.getProductPageList(pageNum, pageSize);
     }
 
 }

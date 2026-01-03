@@ -4,6 +4,7 @@ package com.emily.mall.inventory.controller;
 import com.emily.mall.common.dto.InventoryLockDto;
 import com.emily.mall.common.dto.InventoryUpdateDto;
 import com.emily.mall.common.result.Result;
+import com.emily.mall.inventory.dto.ChangeInventoryVo;
 import com.emily.mall.inventory.entity.Inventory;
 import com.emily.mall.inventory.service.InventoryService;
 import lombok.RequiredArgsConstructor;
@@ -24,8 +25,8 @@ public class InventoryController {
     //1.扣减库存（付款引发）
     @PutMapping("/deduct")
     public Result<Boolean> deductStock(@RequestBody List<InventoryDeductDTO> items) {
-        inventoryService.deductStock(items);
-        return Result.ok(true);
+        Boolean success=inventoryService.deductStock(items);
+        return success? Result.ok(true):Result.fail("支付扣减库存失败");
     }
     //2.锁定库存（下单引发）
     @PutMapping("/lock")
@@ -37,9 +38,10 @@ public class InventoryController {
 
     //2.创建库存
     @PostMapping("/create")
-    public Result<Boolean> createInventory(@RequestBody Inventory inventory) {
-        boolean success = inventoryService.save(inventory);
-        return success ? Result.ok(success) : Result.fail("创建库存失败");
+    public Result<ChangeInventoryVo> createInventory(@RequestBody Inventory inventory) {
+//        boolean success = inventoryService.save(inventory);
+        ChangeInventoryVo vo=inventoryService.createInventory(inventory);
+        return vo!=null ? Result.ok(vo) : Result.fail("创建库存失败");
     }
 
     //3.根据商品ID更新库存

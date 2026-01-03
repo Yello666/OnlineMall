@@ -1,6 +1,7 @@
 package com.emily.mall.product.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.emily.mall.common.feign.InventoryClient;
 import com.emily.mall.common.result.Result;
@@ -102,6 +103,40 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
         int result = productMapper.updateById(product);
         return result > 0 ? Result.ok(true) : Result.fail("下架商品失败");
     }
+
+    /**
+     * 5. 商品列表分页查询
+     * @param pageNum 页码（从1开始）
+     * @param pageSize 每页条数
+     * @return 分页商品数据
+     */
+    @Override
+    public Result<Page<Product>> getProductPageList(Long pageNum, Long pageSize) {
+        // 1. 校验分页参数
+        if (pageNum == null || pageNum < 1) {
+            pageNum = 1L; // 默认第一页
+        }
+        if (pageSize == null || pageSize < 1 || pageSize > 100) {
+            pageSize = 10L; // 默认每页10条，最大限制100条
+        }
+
+        // 2. 构建分页对象
+        Page<Product> productPage = new Page<>(pageNum, pageSize);
+
+        // 3. 执行分页查询（可根据需求添加查询条件，此处默认查询所有商品）
+        // 如需按条件查询（如按品牌、状态），可添加LambdaQueryWrapper参数
+        LambdaQueryWrapper<Product> wrapper = new LambdaQueryWrapper<>();
+        // 示例：只查询上架商品（status=1），如需查询所有可删除此行
+        wrapper.eq(Product::getStatus, 1);
+        // 按创建时间倒序排序
+        wrapper.orderByDesc(Product::getCreateTime);
+
+        Page<Product> resultPage = productMapper.selectPage(productPage, wrapper);
+
+        // 4. 返回分页结果
+        return Result.ok("商品分页查询成功", resultPage);
+    }
+
 
 
 

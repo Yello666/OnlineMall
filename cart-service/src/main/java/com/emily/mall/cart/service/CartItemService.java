@@ -32,7 +32,7 @@ public interface CartItemService extends IService<CartItem> {
     /**
      * 计算购物车总价
      */
-    CartTotalDTO calculateSelectedTotalByUserId(Long userId);
+    CartTotalDTO calculateSelectedTotalByUserId(Long userId,List<Long> productIds);
 
     /**
      * 清空购物车
@@ -43,4 +43,8 @@ public interface CartItemService extends IService<CartItem> {
      * 根据商品ID列表删除购物车商品
      */
     Boolean removeByProductIds(Long userId, List<Long> productIds);
+
+
+    //根据商品ID列表将购物车商品数量减一
+    Boolean minusByProductIds(Long userId,List<Long> productIds);
 }

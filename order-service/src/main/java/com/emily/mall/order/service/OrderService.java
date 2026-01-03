@@ -10,7 +10,10 @@ import com.emily.mall.order.entity.Order;
 public interface OrderService extends IService<Order> {
 
     //用户下单
-    boolean createOrder(Order order);
+    Order createOrder(Order order);
+
+    //改变订单状态
+    Boolean updateOrderStatus(Long OrderId,Integer newStatus);
 
 
     /**
@@ -22,6 +25,11 @@ public interface OrderService extends IService<Order> {
      * 根据订单号查询订单
      */
     Order getOrderByOrderId(Long id);
+
+    /**
+     * 根据订单流水号查询订单
+     */
+    Order getOrderByOrderNo(String orderNo);
 //
     /**
      * 根据用户ID查询订单列表

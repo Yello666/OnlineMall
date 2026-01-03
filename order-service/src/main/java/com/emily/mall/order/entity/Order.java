@@ -36,7 +36,16 @@ public class Order extends BaseEntity {
 //    /**
 //     * 订单号
 //     */
-//    private String orderNo;
+
+    private String orderNo;
+//    订单为什么也需要流水号？
+//            * 订单号用于内部查询，订单流水号可以记录订单的一些信息，是对订单的一个补充说明。订单流水号：是业务层面的标识，如 E0001211002201805140123456789，包含业务信息，可以打印在小票上，方便用户和业务人员理解：
+//            *
+//            *     E：代表线上交易
+//     *     00012：代表店铺编号
+//     *     11002：代表商品品类
+//     *     20180514：代表日期
+//     *     0123456789：随机码
 
     /**
      * 用户ID
@@ -49,7 +58,7 @@ public class Order extends BaseEntity {
     private BigDecimal totalAmount;
 
     /**
-     * 实付金额
+     * 应付金额
      */
     private BigDecimal payAmount;
 
@@ -83,10 +92,10 @@ public class Order extends BaseEntity {
      */
     private Integer status;
 
-    /**
-     * 支付方式(1:支付宝 2:微信 3:银联)
-     */
-    private Integer payType;
+//    /**
+//     * 支付方式(1:支付宝 2:微信 3:银联)
+//     */
+//    private Integer payType;
 
     /**
      * 备注

@@ -15,18 +15,21 @@
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar" />
         </processorPath>
-        <module name="user-dto" />
         <module name="cart-service" />
         <module name="inventory-service" />
         <module name="payment-service" />
-        <module name="user-api" />
         <module name="gateway-service" />
         <module name="product-service" />
         <module name="order-service" />
+        <module name="user-service" />
         <module name="mall-common" />
-        <module name="user-biz" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="user-api" target="17" />
+      <module name="user-biz" target="17" />
+      <module name="user-dto" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

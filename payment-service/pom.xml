@@ -19,7 +19,7 @@
     <dependencies>
         <!--        通用模块-->
         <dependency>
-            <groupId>com.emily</groupId>
+            <groupId>com.emily.mall</groupId>
             <artifactId>mall-common</artifactId>
             <version>1.0.0</version>
         </dependency>

@@ -57,5 +57,6 @@ public class CartItem extends BaseEntity {
     /**
      * 是否选中(0:未选中 1:已选中)
      */
-    private Integer selected;
+//    不将这个字段持久化
+//    private Integer selected;
 }
